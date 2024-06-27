@@ -1,0 +1,56 @@
+# This is a basic workflow to help you get started with Actions
+name: Continuous Integration
+
+# Controls when the action will run.
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches:
+      - main
+    paths:
+      - "webapp/**"
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checkout the repository to the GitHub Actions runner
+      - uses: actions/checkout@v4
+
+      # Set up Python 3.10 environment
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.10"
+
+      # Verify the system environment by printing the current directory and its contents
+      - name: Verify system environment
+        run: |
+          pwd
+          ls -la
+
+      # Install dependencies using the Makefile's install target
+      - name: Install dependencies
+        run: |
+          cd "webapp/flask-sklearn"
+          make install
+
+      # Lint the code with pylint using the Makefile's lint target
+      - name: Lint with pylint
+        run: |
+          cd "webapp/flask-sklearn"
+          make lint
+
+      # Run tests with pytest using the Makefile's test target
+      - name: Test with pytest
+        run: |
+          cd "webapp/flask-sklearn"
+          make test

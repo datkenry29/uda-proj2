@@ -90,17 +90,17 @@ The architectural diagram shows how key parts of the system interact, including 
    - Deploy the application to Azure App Service:
 
      ```
-     az webapp up --sku F1 --name flask-ml --resource-group uda-proj2-rg
+     az webapp up --sku F1 --name flask-ml-uda-proj2 --resource-group uda-proj2-rg
      ```
 
-     ![alt text](imgs/image-12.png)
+     ![Alt text](image-9.png)
 
      The Azure CLI commands in a Bash script called commands.sh file in the GitHub repo contains the steps Set up Azure CLI and Deploy Application
 
    - Our application will be deployed and available at https://${app-name}azurewebsites.net default port is 443
-     ![alt text](imgs/image-13.png)
+     ![Alt text](image-10.png)
    - Azure app service from the Azure portal
-     ![alt text](imgs/image-14.png)
+     ![Alt text](image-11.png)
 
 ### Github Action
 
