@@ -105,20 +105,20 @@ The architectural diagram shows how key parts of the system interact, including 
 ### Github Action
 
 1. **Successful deploy of the project in GitHub Actions**
-   ![alt text](imgs/image-17.png)
-   ![alt text](imgs/image-16.png)
+   ![Alt text](image-12.png)
+   ![Alt text](image-13.png)
 
 ### Azure DevOps
 
 1. **Set Up Azure Pipelines for Continuous Delivery**
    - Navigate to [dev.azure.com](dev.azure.com) and sign in. Then create new project if not exitst.
-     ![alt text](imgs/image-18.png)
+     ![Alt text](image-18.png)
    - Once the project is created, from the new project page, select Project settings from the left navigation. On the Project Settings page, select Pipelines > Service connections, then select New service connection.
-     ![alt text](imgs/image-19.png)
+     ![Alt text](image-19.png)
    - In the New Service Connections dialog, select Azure Resource Manager from the dropdown.
-     ![alt text](imgs/image-20.png)
+     ![Alt text](image-20.png)
    - In `New Azure service connection` dialogue box, select `Workload Identity federation (automatic)`.
-     ![alt text](imgs/image-21.png)
+     ![Alt text](image-14.png)
    - Press `Next` and do following steps:
      - Select scope level as `Subscription`
      - You might need to log in
@@ -126,14 +126,14 @@ The architectural diagram shows how key parts of the system interact, including 
      - Input a valid Service Connection Name
      - Need to check the box Grant Access Permissions to all pipelines
      - Save
-       ![alt text](imgs/image-22.png)
+       ![Alt text](image-15.png)
 2. **Azure Pipeline App**
 
    - From your project page left navigation, navigate to `Pipelines` -> `Create Pipelines`
-     ![alt text](imgs/image-23.png)
+     ![Alt text](image-16.png)
    - In the New Pipeline screen -> Select GitHub as Repo -> Select the Project
-     ![alt text](imgs/image-24.png)
-     ![alt text](imgs/image-25.png)
+     ![Alt text](image-17.png)
+     ![Alt text](image-21.png)
    - In tab `Configure`, select `Python to Linux Azure Webapp` -> Select the deployed app -> Validate and configure
    - ![alt text](imgs/image-27.png)
 
