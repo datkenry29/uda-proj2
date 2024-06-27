@@ -45,35 +45,35 @@ The architectural diagram shows how key parts of the system interact, including 
      ```
      git clone https://github.com/datkenry29/uda-proj2.git
      ```
-     ![alt text](images/clone-repo.png)
+     ![Alt text](image-1.png)
    - Navigate to the project directory:
      ```
-     cd udacity-devops-project2/webapp/flask-sklearn
+     cd uda-proj2/webapp/flask-sklearn
      ```
-     ![alt text](images/repo_detail.png)
+     ![Alt text](image-2.png)
 2. **Run Tests in Azure Cloud Shell**
    - Create Python Virtual Enviroment to run your application
      ```
-     python3 -m venv ~/.venv
+     python3 -m venv ./.venv
      ```
-     ![alt text](images/env.png)
+     ![Alt text](image-4.png)
    - Install dependencies and run the tests using the Makefile:
      ```
      make all
      ```
-     ![alt text](images/makeall_1.png)
-     ![alt text](images/makeall_2.png)
+     ![Alt text](image-3.png)
+     ![Alt text](image-5.png)
    - Run application
      ```
      export FLASK_APP=app.py
      flask run
      ```
-     ![alt text](images/flask_run.png)
+     ![Alt text](image-6.png)
    - Above step would launch a Python Virtual Environment and would run the application. Launch a new Azure Cloud shell session and test the application by running the make_prediction.sh script
      ```
      ./make_prediction.sh
      ```
-     ![alt text](imgs/image-8.png)
+     ![Alt text](image-7.png)
    - `CTRL-C` to stop the Flask application
    - To deactivate the virtual environment run `deactivate`
 
@@ -82,15 +82,15 @@ The architectural diagram shows how key parts of the system interact, including 
 1. **Create new Resource Group**
    - Run command below:
      ```
-     az group create --name udacity-pj2-rg --location eastus
+     az group create --name uda-proj2-rg --location eastus
      ```
-     ![alt text](imgs/image-11.png)
+     ![Alt text](image-8.png)
 2. **Deploy the Application using Azure CLI**
 
    - Deploy the application to Azure App Service:
 
      ```
-     az webapp up --sku F1 --name flask-ml-nghiant46 --resource-group udacity-pj2-rg
+     az webapp up --sku F1 --name flask-ml --resource-group uda-proj2-rg
      ```
 
      ![alt text](imgs/image-12.png)
