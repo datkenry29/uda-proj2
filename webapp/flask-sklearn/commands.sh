@@ -1,0 +1,1 @@
+az webapp up --sku F1 --name flask-ml-nghiant46 --resource-group udacity-pj2-rg
