@@ -4,84 +4,97 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/python
 
 trigger:
-- master
+  branches:
+    include:
+      - master
+  paths:
+    include:
+      - "webapp/*"
 
 variables:
   # Azure Resource Manager connection created during pipeline creation
-  azureServiceConnectionId: 'd8e87afd-11c2-4a93-a87b-5dcf4ae4253e'
+  azureServiceConnectionId: "d8e87afd-11c2-4a93-a87b-5dcf4ae4253e"
 
   # Web app name
-  webAppName: 'flask-ml-uda-proj2'
+  webAppName: "flask-ml-uda-proj2"
 
   # Agent VM image name
-  vmImageName: 'ubuntu-latest'
+  vmImageName: "ubuntu-latest"
 
   # Environment name
-  environmentName: 'flask-ml-uda-proj2'
+  environmentName: "flask-ml-uda-proj2"
 
   # Project root folder. Point to the folder containing manage.py file.
   projectRoot: $(System.DefaultWorkingDirectory)
 
-  # Python version: 3.7
-  pythonVersion: '3.7'
+  # Python version: 3.10
+  pythonVersion: "3.10"
+
+  # Workspace directory
+  workspaceDir: "webapp/flask-sklearn"
 
 stages:
-- stage: Build
-  displayName: Build stage
-  jobs:
-  - job: BuildJob
-    pool:
-      vmImage: $(vmImageName)
-    steps:
-    - task: UsePythonVersion@0
-      inputs:
-        versionSpec: '$(pythonVersion)'
-      displayName: 'Use Python $(pythonVersion)'
-
-    - script: |
-        python -m venv antenv
-        source antenv/bin/activate
-        python -m pip install --upgrade pip
-        pip install setup
-        pip install -r requirements.txt
-      workingDirectory: $(projectRoot)
-      displayName: "Install requirements"
-
-    - task: ArchiveFiles@2
-      displayName: 'Archive files'
-      inputs:
-        rootFolderOrFile: '$(projectRoot)'
-        includeRootFolder: false
-        archiveType: zip
-        archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-        replaceExistingArchive: true
-
-    - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-      displayName: 'Upload package'
-      artifact: drop
-
-- stage: Deploy
-  displayName: 'Deploy Web App'
-  dependsOn: Build
-  condition: succeeded()
-  jobs:
-  - deployment: DeploymentJob
-    pool:
-      vmImage: $(vmImageName)
-    environment: $(environmentName)
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-
+  - stage: Build
+    displayName: Build stage
+    jobs:
+      - job: BuildJob
+        pool:
+          vmImage: $(vmImageName)
+        steps:
           - task: UsePythonVersion@0
             inputs:
-              versionSpec: '$(pythonVersion)'
-            displayName: 'Use Python version'
+              versionSpec: "$(pythonVersion)"
+            displayName: "Use Python $(pythonVersion)"
 
-          - task: AzureWebApp@1
-            displayName: 'Deploy Azure Web App : flask-ml-uda-proj2'
+          - script: |
+              pwd
+              ls -la
+            workingDirectory: $(projectRoot)/$(workspaceDir)
+            displayName: "Verify build environment"
+
+          - script: |
+              python -m venv antenv
+              source antenv/bin/activate
+              python -m pip install --upgrade pip
+              pip install setup
+              pip install -r requirements.txt
+            workingDirectory: $(projectRoot)/$(workspaceDir)
+            displayName: "Install requirements"
+
+          - task: ArchiveFiles@2
+            displayName: "Archive files"
             inputs:
-              azureSubscription: $(azureServiceConnectionId)
-              appName: $(webAppName)
-              package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
+              rootFolderOrFile: "$(projectRoot)/$(workspaceDir)"
+              includeRootFolder: false
+              archiveType: zip
+              archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+              replaceExistingArchive: true
+
+          - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+            displayName: "Upload package"
+            artifact: drop
+
+  - stage: Deploy
+    displayName: "Deploy Web App"
+    dependsOn: Build
+    condition: succeeded()
+    jobs:
+      - deployment: DeploymentJob
+        pool:
+          vmImage: $(vmImageName)
+        environment: $(environmentName)
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: UsePythonVersion@0
+                  inputs:
+                    versionSpec: "$(pythonVersion)"
+                  displayName: "Use Python version"
+
+                - task: AzureWebApp@1
+                  displayName: "Deploy Azure Web App : flask-ml-uda-proj2"
+                  inputs:
+                    azureSubscription: $(azureServiceConnectionId)
+                    appName: $(webAppName)
+                    package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip

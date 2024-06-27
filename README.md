@@ -135,7 +135,7 @@ The architectural diagram shows how key parts of the system interact, including 
      ![Alt text](image-17.png)
      ![Alt text](image-21.png)
    - In tab `Configure`, select `Python to Linux Azure Webapp` -> Select the deployed app -> Validate and configure
-   - ![alt text](imgs/image-27.png)
+   - ![Alt text](image-24.png)
 
    - Create an Azure Pipeline in Azure DevOps.
    - Configure the pipeline to build and deploy the application automatically.
