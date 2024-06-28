@@ -22,7 +22,7 @@ variables:
   poolName: "Default"
 
   # Environment name
-  #environmentName: "flask-ml-uda-proj2"
+  environmentName: "flask-ml-uda-proj2"
 
   # Project root folder. Point to the folder containing manage.py file.
   projectRoot: $(System.DefaultWorkingDirectory)
