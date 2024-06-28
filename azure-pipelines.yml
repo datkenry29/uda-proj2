@@ -19,7 +19,7 @@ variables:
   webAppName: "flask-ml-uda-proj2"
 
   # Agent VM image name
-  vmImageName: "ubuntu-latest"
+  vmImageName: "ubuntu-2004"
 
   # Environment name
   environmentName: "flask-ml-uda-proj2"
