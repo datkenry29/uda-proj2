@@ -104,3 +104,18 @@ stages:
                     azureSubscription: $(azureServiceConnectionId)
                     appName: $(webAppName)
                     package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
+
+                - script: |
+                    echo "Checking deployment status..."
+                    az webapp deployment list -n $(webAppName) -g uda-proj2-rg --query "[?properties.active==true].{Name:name,Status:properties.status}" -o table
+                  displayName: "Check Deployment Status"
+
+                - script: |
+                    deployment_status=$(az webapp deployment list -n $(webAppName) -g uda-proj2-rg --query "[?properties.active==true].{Status:properties.status}" -o tsv)
+                    if [ "$deployment_status" == "Success" ]; then
+                      echo "Deployment successful"
+                    else
+                      echo "Deployment failed"
+                      exit 1
+                    fi
+                  displayName: "Verify Deployment Status"
