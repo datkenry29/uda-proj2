@@ -97,6 +97,9 @@ stages:
                   inputs:
                     versionSpec: "$(pythonVersion)"
                   displayName: "Use Python version"
+                
+                - script: echo "Python version set"
+                    displayName: "Python Version Log"
 
                 - task: AzureWebApp@1
                   displayName: "Deploy Azure Web App : flask-ml-uda-proj2"
