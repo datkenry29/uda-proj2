@@ -87,10 +87,21 @@ stages:
           runOnce:
             deploy:
               steps:
+                - script: echo "Starting Deploy Job"
+                  displayName: "Start Deploy Log"
+
+                - checkout: self
+
+                - script: echo "Checked out repository"
+                  displayName: "Checkout Log"
+
                 - task: UsePythonVersion@0
                   inputs:
                     versionSpec: "$(pythonVersion)"
                   displayName: "Use Python version"
+                
+                - script: echo "Python version set"
+                    displayName: "Python Version Log"
 
                 - task: AzureWebApp@1
                   displayName: "Deploy Azure Web App : flask-ml-uda-proj2"
@@ -98,3 +109,4 @@ stages:
                     azureSubscription: $(azureServiceConnectionId)
                     appName: $(webAppName)
                     package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
+                  timeoutInMinutes: 15
