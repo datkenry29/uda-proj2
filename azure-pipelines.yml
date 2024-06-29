@@ -81,6 +81,7 @@ stages:
     condition: succeeded()
     jobs:
       - deployment: DeploymentJob
+        pool: "$(poolName)"
         environment: $(environmentName)
         strategy:
           runOnce:
