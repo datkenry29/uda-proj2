@@ -33,8 +33,7 @@ variables:
   # Workspace directory
   workspaceDir: "webapp/flask-sklearn"
 
-pool:
-  vmImage: "$(poolName)"
+pool: "$(poolName)"
 
 stages:
   - stage: Build
