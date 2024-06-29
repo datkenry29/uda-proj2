@@ -150,8 +150,8 @@ The architectural diagram shows how key parts of the system interact, including 
      ```
      locust -f locustfile.py
      ```
-     ![alt text](imgs/image-32.png)
-     ![alt text](imgs/image-33.png)
+     ![Alt text](image-23.png)
+     ![Alt text](image-25.png)
 
 4. **Test the Deployed Application**
 
@@ -166,7 +166,7 @@ The architectural diagram shows how key parts of the system interact, including 
 5. **Stream Log Files**
    - Stream the log files from the deployed application:
      ```
-     az webapp log tail --name flask-ml-nghiant46 --resource-group udacity-pj2-rg
+     az webapp log tail --name flask-ml-uda-proj2 --resource-group uda-proj2-rg
      ```
      ![alt text](imgs/image-36.png)
 
