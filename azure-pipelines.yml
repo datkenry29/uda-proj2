@@ -33,7 +33,7 @@ variables:
   # Workspace directory
   workspaceDir: "webapp/flask-sklearn"
 
-pool: "$(poolName)"
+#pool: "$(poolName)"
 
 stages:
   - stage: Build
@@ -41,6 +41,7 @@ stages:
     jobs:
       - job: BuildJob
         pool:
+          name: "$(poolName)"
           vmImage: 'ubuntu-2004'
         steps:
           - task: UsePythonVersion@0
@@ -86,6 +87,7 @@ stages:
     jobs:
       - deployment: DeploymentJob
         pool:
+          name: "$(poolName)"
           vmImage: 'ubuntu-2004'
         environment: $(environmentName)
         strategy:
