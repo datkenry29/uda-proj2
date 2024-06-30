@@ -75,6 +75,9 @@ stages:
             displayName: "Upload package"
             artifact: drop
 
+          - script: echo "file $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
+              displayName: "Checkout file Log"
+
   - stage: Deploy
     displayName: "Deploy Web App"
     dependsOn: Build
@@ -87,7 +90,8 @@ stages:
           runOnce:
             deploy:
               steps:
-                - checkout: self
+                - script: echo "file $(Pipeline.Workspace)/drop/$(Build.BuildId).zip"
+                    displayName: "Checkout Log"
 
                 - task: UsePythonVersion@0
                   inputs:
