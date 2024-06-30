@@ -74,7 +74,7 @@ stages:
           - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
             displayName: "Upload package"
             artifact: drop
-            
+
   - stage: Deploy
     displayName: "Deploy Web App"
     dependsOn: Build
@@ -88,10 +88,10 @@ stages:
             deploy:
               steps:
                 - script: ls -la $(Pipeline.Workspace)/drop/
-                    displayName: "List Drop Directory"
-              
+                  displayName: "List Drop Directory"
+
                 - script: unzip -l $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
-                    displayName: "Verify Package Contents"
+                  displayName: "Verify Package Contents"
 
                 - task: UsePythonVersion@0
                   inputs:
