@@ -13,7 +13,7 @@ trigger:
 
 variables:
   # Azure Resource Manager connection created during pipeline creation
-  azureServiceConnectionId: "27aa7f04-dcb2-48f3-9b87-0e295689f41b"
+  azureServiceConnectionId: "uda-rg-prj2-cnn"
 
   # Web app name
   webAppName: "flask-ml-uda-proj2"
@@ -40,6 +40,8 @@ stages:
     displayName: Build stage
     jobs:
       - job: BuildJob
+        pool:
+          vmImage: 'ubuntu-2004'
         steps:
           - task: UsePythonVersion@0
             inputs:
@@ -71,17 +73,20 @@ stages:
               archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
               replaceExistingArchive: true
 
-          - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+          - task: PublishPipelineArtifact@1
             displayName: "Upload package"
-            artifact: drop
+            inputs: 
+              targetPath: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+              artifact: drop
 
   - stage: Deploy
     displayName: "Deploy Web App"
-    dependsOn: Build
-    condition: succeeded()
+    #dependsOn: Build
+    #condition: succeeded()
     jobs:
       - deployment: DeploymentJob
-        pool: "$(poolName)"
+        pool:
+          vmImage: 'ubuntu-2004'
         environment: $(environmentName)
         strategy:
           runOnce:
@@ -90,17 +95,11 @@ stages:
                 - script: ls -la $(Pipeline.Workspace)/drop/
                   displayName: "List Drop Directory"
 
-                - script: unzip -l $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
-                  displayName: "Verify Package Contents"
-
-                - task: UsePythonVersion@0
-                  inputs:
-                    versionSpec: "$(pythonVersion)"
-                  displayName: "Use Python version"
-
                 - task: AzureWebApp@1
-                  displayName: "Deploy Azure Web App - flask-ml-uda-proj2"
+                  displayName: "Deploy Azure Web App"
                   inputs:
                     azureSubscription: $(azureServiceConnectionId)
                     appName: $(webAppName)
+                    appType: webApp
                     package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
+                    deploymentMethod: auto
