@@ -90,7 +90,7 @@ The architectural diagram shows how key parts of the system interact, including 
    - Deploy the application to Azure App Service:
 
      ```
-     az webapp up --sku F1 --name flask-ml-uda-proj2 --resource-group uda-proj2-rg
+     az webapp up --sku F1 --name flask-ml-uda-proj2-new --resource-group uda-proj2-rg
      ```
 
      ![Alt text](image-9.png)
@@ -150,8 +150,8 @@ The architectural diagram shows how key parts of the system interact, including 
      ```
      locust -f locustfile.py
      ```
-     ![Alt text](image-23.png)
      ![Alt text](image-25.png)
+     ![Alt text](image-26.png)
 
 4. **Test the Deployed Application**
 
@@ -161,14 +161,14 @@ The architectural diagram shows how key parts of the system interact, including 
    ./make_predict_azure_app.sh
    ```
 
-   ![alt text](imgs/image-35.png)
+   ![Alt text](image-23.png)
 
 5. **Stream Log Files**
    - Stream the log files from the deployed application:
      ```
      az webapp log tail --name flask-ml-uda-proj2 --resource-group uda-proj2-rg
      ```
-     ![alt text](imgs/image-36.png)
+     ![Alt text](image-27.png)
 
 ## Enhancements
 

@@ -16,13 +16,13 @@ variables:
   azureServiceConnectionId: "Flask ML AppService"
 
   # Web app name
-  webAppName: "flask-ml-uda-proj2"
+  webAppName: "flask-ml-uda-proj2-new"
 
   # Agent VM image name
   poolName: "Default"
 
   # Environment name
-  environmentName: "flask-ml-uda-proj2"
+  environmentName: "flask-ml-uda-proj2-new"
 
   # Project root folder. Point to the folder containing manage.py file.
   projectRoot: $(System.DefaultWorkingDirectory)
@@ -92,7 +92,7 @@ stages:
                   displayName: "Use Python version"
 
                 - task: AzureWebApp@1
-                  displayName: "Deploy Azure Web App : flask-ml-uda-proj2"
+                  displayName: "Deploy Azure Web App : flask-ml-uda-proj2-new"
                   inputs:
                     azureSubscription: $(azureServiceConnectionId)
                     appName: $(webAppName)
