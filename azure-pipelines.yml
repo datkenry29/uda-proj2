@@ -42,7 +42,7 @@ stages:
       - job: BuildJob
         pool:
           name: "$(poolName)"
-          vmImage: 'ubuntu-2004'
+          vmImage: 'ubuntu-2204'
         steps:
           - task: UsePythonVersion@0
             inputs:
@@ -86,6 +86,9 @@ stages:
     condition: succeeded()
     jobs:
       - deployment: DeploymentJob
+        pool:
+          name: "$(poolName)"
+          vmImage: 'ubuntu-2204'
         environment: $(environmentName)
         strategy:
           runOnce:
