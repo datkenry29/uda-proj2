@@ -102,6 +102,7 @@ stages:
                   inputs:
                     azureSubscription: $(azureServiceConnectionId)
                     appName: $(webAppName)
+                    appType: 'webAppLinux'
                     #package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
                     package: $(Pipeline.Workspace)/drop/44.zip
                     deploymentMethod: auto
