@@ -89,8 +89,8 @@ stages:
           runOnce:
             deploy:
               steps:
-                - download: current
-                  artifact: drop
+                # - download: current
+                #   artifact: drop
 
                 - script: |
                     echo "##[section]Downloading artifact"
