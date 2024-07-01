@@ -13,7 +13,7 @@ trigger:
 
 variables:
   # Azure Resource Manager connection created during pipeline creation
-  azureServiceConnectionId: "b0429bbe-f55e-4de9-9ea7-898dd1503c18"
+  azureServiceConnectionId: "Flask ML AppService"
 
   # Web app name
   webAppName: "flask-ml-uda-proj2"
@@ -33,16 +33,13 @@ variables:
   # Workspace directory
   workspaceDir: "webapp/flask-sklearn"
 
-#pool: "$(poolName)"
+pool: "$(poolName)"
 
 stages:
   - stage: Build
     displayName: Build stage
     jobs:
       - job: BuildJob
-        pool:
-          name: "$(poolName)"
-          vmImage: 'ubuntu-2204'
         steps:
           - task: UsePythonVersion@0
             inputs:
@@ -74,11 +71,9 @@ stages:
               archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
               replaceExistingArchive: true
 
-          - task: PublishPipelineArtifact@1
+          - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
             displayName: "Upload package"
-            inputs: 
-              targetPath: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-              artifact: drop
+            artifact: drop
 
   - stage: Deploy
     displayName: "Deploy Web App"
@@ -86,22 +81,19 @@ stages:
     condition: succeeded()
     jobs:
       - deployment: DeploymentJob
-        pool:
-          name: "$(poolName)"
-          vmImage: 'ubuntu-2204'
         environment: $(environmentName)
         strategy:
           runOnce:
             deploy:
               steps:
-                - download: current
-                  artifact: drop
+                - task: UsePythonVersion@0
+                  inputs:
+                    versionSpec: "$(pythonVersion)"
+                  displayName: "Use Python version"
 
                 - task: AzureWebApp@1
-                  displayName: "Deploy Azure Web App"
+                  displayName: "Deploy Azure Web App : flask-ml-uda-proj2"
                   inputs:
                     azureSubscription: $(azureServiceConnectionId)
                     appName: $(webAppName)
-                    appType: webAppLinux
                     package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
-                    deploymentMethod: auto
