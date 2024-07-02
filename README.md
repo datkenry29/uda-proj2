@@ -150,8 +150,8 @@ The architectural diagram shows how key parts of the system interact, including 
      ```
      locust -f locustfile.py
      ```
-     ![Alt text](screenshots/image-25.png)
-     ![Alt text](screenshots/image-26.png)
+     ![Alt text](screenshots/image-30.png)
+     ![Alt text](screenshots/image-31.png)
 
 4. **Test the Deployed Application**
 
