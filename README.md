@@ -82,18 +82,18 @@ The architectural diagram shows how key parts of the system interact, including 
 1. **Create new Resource Group**
    - Run command below:
      ```
-     az group create --name uda-proj2-rg --location eastus
+     az group create --name uda-proj2-rg-new --location eastus
      ```
-     ![Alt text](image-8.png)
+     ![Alt text](image-28.png)
 2. **Deploy the Application using Azure CLI**
 
    - Deploy the application to Azure App Service:
 
      ```
-     az webapp up --sku F1 --name flask-ml-uda-proj2-new --resource-group uda-proj2-rg
+     az webapp up --sku F1 --name flask-ml-uda-proj2-new --resource-group uda-proj2-rg-new
      ```
 
-     ![Alt text](image-9.png)
+     ![Alt text](image-29.png)
 
      The Azure CLI commands in a Bash script called commands.sh file in the GitHub repo contains the steps Set up Azure CLI and Deploy Application
 
@@ -166,7 +166,7 @@ The architectural diagram shows how key parts of the system interact, including 
 5. **Stream Log Files**
    - Stream the log files from the deployed application:
      ```
-     az webapp log tail --name flask-ml-uda-proj2 --resource-group uda-proj2-rg
+     az webapp log tail --name flask-ml-uda-proj2 --resource-group uda-proj2-rg-new
      ```
      ![Alt text](image-27.png)
 
