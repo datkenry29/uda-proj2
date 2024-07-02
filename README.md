@@ -1,6 +1,6 @@
-[![Continuous Integration](https://github.com/aiy6u/udacity-devops-project2/actions/workflows/main.yaml/badge.svg)](https://github.com/aiy6u/udacity-devops-project2/actions/workflows/main.yaml)
+[![Continuous Integration](https://github.com/datkenry29/uda-proj2/actions/workflows/main.yaml/badge.svg)](https://github.com/datkenry29/uda-proj2/actions/workflows/main.yaml)
 
-[![Build Status](https://dev.azure.com/rogzitiger/udacity-prj2/_apis/build/status%2Faiy6u.udacity-devops-project2?branchName=main)](https://dev.azure.com/rogzitiger/udacity-prj2/_build/latest?definitionId=1&branchName=main)
+[![Build Status](https://dev.azure.com/datquoc292001/uda-proj2/_apis/build/status%2Fdatkenry29.uda-proj2?branchName=master)](https://dev.azure.com/datquoc292001/uda-proj2/_build/latest?definitionId=3&branchName=master)
 
 # Overview
 
@@ -139,9 +139,9 @@ The architectural diagram shows how key parts of the system interact, including 
 
    - Create an Azure Pipeline in Azure DevOps.
    - Configure the pipeline to build and deploy the application automatically.
-     ![alt text](imgs/image-29.png)
-     ![alt text](imgs/image-30.png)
-     ![alt text](imgs/image-31.png)
+     ![Alt text](image-24.png)
+     ![Alt text](image-25.png)
+     ![Alt text](image-26.png)
      ![alt text](image.png)
 
 3. **Run a Load Test with Locust**
