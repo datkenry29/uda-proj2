@@ -38,19 +38,19 @@ The architectural diagram shows how key parts of the system interact, including 
      ```
      ssh-keygen -t rsa
      ```
-     ![Alt text](images/image.png)
-   - Copy the public key to your Github Account:
      ![Alt text](image.png)
+   - Copy the public key to your Github Account:
+     ![Alt text](image-1.png)
    - Clone the repository:
      ```
      git clone https://github.com/datkenry29/uda-proj2.git
      ```
-     ![Alt text](image-1.png)
+     ![Alt text](image-2.png)
    - Navigate to the project directory:
      ```
      cd uda-proj2/webapp/flask-sklearn
      ```
-     ![Alt text](image-2.png)
+     ![Alt text](image-3.png)
 2. **Run Tests in Azure Cloud Shell**
    - Create Python Virtual Enviroment to run your application
      ```
@@ -61,19 +61,19 @@ The architectural diagram shows how key parts of the system interact, including 
      ```
      make all
      ```
-     ![Alt text](image-3.png)
      ![Alt text](image-5.png)
+     ![Alt text](image-6.png)
    - Run application
      ```
      export FLASK_APP=app.py
      flask run
      ```
-     ![Alt text](image-6.png)
+     ![Alt text](image-7.png)
    - Above step would launch a Python Virtual Environment and would run the application. Launch a new Azure Cloud shell session and test the application by running the make_prediction.sh script
      ```
      ./make_prediction.sh
      ```
-     ![Alt text](image-7.png)
+     ![Alt text](image-8.png)
    - `CTRL-C` to stop the Flask application
    - To deactivate the virtual environment run `deactivate`
 
@@ -84,7 +84,7 @@ The architectural diagram shows how key parts of the system interact, including 
      ```
      az group create --name uda-proj2-rg --location eastus
      ```
-     ![Alt text](image-28.png)
+     ![Alt text](image-9.png)
 2. **Deploy the Application using Azure CLI**
 
    - Deploy the application to Azure App Service:
@@ -93,32 +93,32 @@ The architectural diagram shows how key parts of the system interact, including 
      az webapp up --sku F1 --name flask-ml-uda-proj2 --resource-group uda-proj2-rg
      ```
 
-     ![Alt text](image-29.png)
+     ![Alt text](image-10.png)
 
      The Azure CLI commands in a Bash script called commands.sh file in the GitHub repo contains the steps Set up Azure CLI and Deploy Application
 
    - Our application will be deployed and available at https://${app-name}azurewebsites.net default port is 443
-     ![Alt text](image-10.png)
-   - Azure app service from the Azure portal
      ![Alt text](image-11.png)
+   - Azure app service from the Azure portal
+     ![Alt text](image-12.png)
 
 ### Github Action
 
 1. **Successful deploy of the project in GitHub Actions**
-   ![Alt text](image-12.png)
    ![Alt text](image-13.png)
+   ![Alt text](image-14.png)
 
 ### Azure DevOps
 
 1. **Set Up Azure Pipelines for Continuous Delivery**
    - Navigate to [dev.azure.com](dev.azure.com) and sign in. Then create new project if not exitst.
-     ![Alt text](image-18.png)
+     ![Alt text](image-15.png)
    - Once the project is created, from the new project page, select Project settings from the left navigation. On the Project Settings page, select Pipelines > Service connections, then select New service connection.
-     ![Alt text](image-19.png)
+     ![Alt text](image-16.png)
    - In the New Service Connections dialog, select Azure Resource Manager from the dropdown.
-     ![Alt text](image-20.png)
+     ![Alt text](image-17.png)
    - In `New Azure service connection` dialogue box, select `Workload Identity federation (automatic)`.
-     ![Alt text](image-14.png)
+     ![Alt text](image-18.png)
    - Press `Next` and do following steps:
      - Select scope level as `Subscription`
      - You might need to log in
@@ -126,16 +126,16 @@ The architectural diagram shows how key parts of the system interact, including 
      - Input a valid Service Connection Name
      - Need to check the box Grant Access Permissions to all pipelines
      - Save
-       ![Alt text](image-15.png)
+       ![Alt text](image-19.png)
 2. **Azure Pipeline App**
 
    - From your project page left navigation, navigate to `Pipelines` -> `Create Pipelines`
-     ![Alt text](image-16.png)
+     ![Alt text](image-20.png)
    - In the New Pipeline screen -> Select GitHub as Repo -> Select the Project
-     ![Alt text](image-17.png)
      ![Alt text](image-21.png)
+     ![Alt text](image-22.png)
    - In tab `Configure`, select `Python to Linux Azure Webapp` -> Select the deployed app -> Validate and configure
-   - ![Alt text](image-24.png)
+   - ![Alt text](image-23.png)
 
    - Create an Azure Pipeline in Azure DevOps.
    - Configure the pipeline to build and deploy the application automatically.
