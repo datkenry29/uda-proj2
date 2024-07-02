@@ -26,7 +26,7 @@ The Trello board contains:
 
 ### Architectural Diagram
 
-![Architectural Diagram](UdaPrj2.png)
+![Architectural Diagram](diagram.png)
 
 The architectural diagram shows how key parts of the system interact, including the CI/CD pipeline, Azure services, and the deployed application.
 
@@ -82,7 +82,7 @@ The architectural diagram shows how key parts of the system interact, including 
 1. **Create new Resource Group**
    - Run command below:
      ```
-     az group create --name uda-proj2-rg-new --location eastus
+     az group create --name uda-proj2-rg --location eastus
      ```
      ![Alt text](image-28.png)
 2. **Deploy the Application using Azure CLI**
@@ -90,7 +90,7 @@ The architectural diagram shows how key parts of the system interact, including 
    - Deploy the application to Azure App Service:
 
      ```
-     az webapp up --sku F1 --name flask-ml-uda-proj2-new --resource-group uda-proj2-rg-new
+     az webapp up --sku F1 --name flask-ml-uda-proj2 --resource-group uda-proj2-rg
      ```
 
      ![Alt text](image-29.png)
@@ -166,7 +166,7 @@ The architectural diagram shows how key parts of the system interact, including 
 5. **Stream Log Files**
    - Stream the log files from the deployed application:
      ```
-     az webapp log tail --name flask-ml-uda-proj2 --resource-group uda-proj2-rg-new
+     az webapp log tail --name flask-ml-uda-proj2 --resource-group uda-proj2-rg
      ```
      ![Alt text](image-27.png)
 

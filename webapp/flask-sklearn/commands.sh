@@ -1,1 +1,0 @@
-az webapp up --sku F1 --name flask-ml --resource-group uda-proj2-rg
