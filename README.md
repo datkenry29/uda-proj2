@@ -181,9 +181,9 @@ In the future, the project can be improved by:
 
 ## Demo
 
-Watch the project demo on YouTube: [Project Demo Screencast](https://youtu.be/-RWAkXZpJ80)
+Watch the project demo on YouTube: [Project Demo Screencast](https://youtu.be/nh3jyUz-_jI)
 
-[![VIDEO](https://img.youtube.com/vi/-RWAkXZpJ80/0.jpg)](https://www.youtube.com/watch?v=-RWAkXZpJ80)
+[![VIDEO](https://img.youtube.com/vi/nh3jyUz-_jI/0.jpg)](https://www.youtube.com/watch?v=nh3jyUz-_jI)
 
 The screencast demonstrates:
 
